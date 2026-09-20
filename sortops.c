@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   sortops.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/19 08:37:22 by nilim             #+#    #+#             */
-/*   Updated: 2026/09/19 13:12:01 by nilim            ###   ########.fr       */
+/*   Created: 2026/09/19 13:09:54 by nilim             #+#    #+#             */
+/*   Updated: 2026/09/19 13:23:12 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
-#include <stdio.h>
+#include <stdlib.h>
 
-int	main()
+void	s(char c)
 {
-	static t_list	*a;
-	// static t_list	*b;
-
-	push(&a, 3);
-	printf("peek:%d\n", peek(&a));
-	printf("pop:%d\n", pop(&a));
-	printf("peek:%d\n", peek(&a));
+	if (c == 'a')
+	{
+		
+	}
 }
+
+void	p(char c);
+void	r(char c);
+void	rr(char c);

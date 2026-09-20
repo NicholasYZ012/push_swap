@@ -25,7 +25,7 @@ Push swap delegation
 Nic 
 1. Main core
 Premise
-stack a and b
+stack a and b /
 11 operations
 Disorder metric calculation
 

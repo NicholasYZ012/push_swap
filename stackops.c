@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 09:22:50 by nilim             #+#    #+#             */
-/*   Updated: 2026/09/19 12:09:28 by nilim            ###   ########.fr       */
+/*   Updated: 2026/09/19 12:56:48 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,18 @@ int	pop(t_list **stack)
 	int		n;
 	t_list	*temp;
 
-	temp = *stack;
-	*stack = (*stack)->next;
-	n = ft_atoi(temp->content);
-	ft_lstdelone(temp, free);
-	return (n);
+	if (stack != NULL && *stack != NULL)
+		temp = *stack;
+		*stack = (*stack)->next;
+		n = ft_atoi(temp->content);
+		ft_lstdelone(temp, free);
+		return (n);
+	return (-1);
 }
 
 int	peek(t_list **stack)
 {
 	if (stack != NULL && *stack != NULL)
 		return (ft_atoi((*stack)->content));
-	ft_putstr_fd("No element found\n", 2);
 	return (-1);
 }
