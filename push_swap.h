@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: juho <juho@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 08:38:56 by nilim             #+#    #+#             */
-/*   Updated: 2026/09/19 13:17:42 by nilim            ###   ########.fr       */
+/*   Updated: 2026/09/22 10:47:59 by juho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "libft/libft.h"
+# include <limits.h>
 
 // stackops
 int		isEmpty(t_list **stack);
