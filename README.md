@@ -28,7 +28,6 @@ Premise
 stack a and b /
 11 operations
 Disorder metric calculation
-
 3. Complex + adaptive alg
 
 4. Command stuff
@@ -37,7 +36,7 @@ Strat selection
 List
 
 juho
-
+1. ranking
 2. Simple + medium alg
 5. Benchmark mode 
 6. Bonus checker 
