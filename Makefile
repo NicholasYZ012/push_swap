@@ -2,7 +2,7 @@
 NAME := push_swap
 
 # Sources and objects
-SRCS := push_swap.c stackops.c
+SRCS := push_swap.c stackops.c sortops.c ps_utils.c
 
 OBJ := $(SRCS:%.c=%.o)
 

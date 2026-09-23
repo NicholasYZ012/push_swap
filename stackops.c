@@ -1,4 +1,4 @@
-z/* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   stackops.c                                         :+:      :+:    :+:   */
@@ -35,13 +35,13 @@ int	pop(t_list **stack)
 	int		n;
 	t_list	*temp;
 
-	if (stack != NULL && *stack != NULL)
-		temp = *stack;
-		*stack = (*stack)->next;
-		n = ft_atoi(temp->content);
-		ft_lstdelone(temp, free);
-		return (n);
-	return (-1);
+	if (stack == NULL || *stack == NULL)
+		return (-1);
+	temp = *stack;
+	*stack = (*stack)->next;
+	n = ft_atoi(temp->content);
+	ft_lstdelone(temp, free);
+	return (n);
 }
 
 int	peek(t_list **stack)
