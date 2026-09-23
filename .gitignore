@@ -1,0 +1,6 @@
+# Object files and libraries
+*.o
+*.a
+
+# Executable
+push_swap

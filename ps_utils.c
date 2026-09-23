@@ -32,7 +32,6 @@ long	ft_atoi_push_swap(const char *nptr, int *error)
 {
 	long	neg;
 	long	value;
-	int		digit;
 
 	neg = 1;
 	value = 0;
@@ -48,17 +47,9 @@ long	ft_atoi_push_swap(const char *nptr, int *error)
 		return (*error = 1, 0);
 	while (ft_isdigit(*nptr))
 	{
-		digit = *nptr - '0';
-		
-		if (value > (LONG_MAX - digit) / 10)
+		value = (value * 10) + (*nptr - '0');
+		if (value * neg > INT_MAX || value * neg < INT_MIN)
 			return (*error = 1, 0);
-
-		value = (value * 10) + digit;
-
-		if ((neg == 1 && value > INT_MAX) 
-			|| (neg == -1 && (-value) < INT_MIN))
-			return (*error = 1, 0);
-
 		nptr++;
 	}
 	if (*nptr != '\0')
