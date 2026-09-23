@@ -27,4 +27,9 @@ void	p(char c);
 void	r(char c);
 void	rr(char c);
 
+// ps_utils
+int		ft_sqrt(int nb);
+long	ft_atoi_push_swap(const char *nptr, int *error);
+void	ranking(int *nums, int *rank, int size);
+
 #endif

@@ -65,3 +65,25 @@ long	ft_atoi_push_swap(const char *nptr, int *error)
 		return (*error = 1, 0);
 	return (value * neg);
 }
+
+void	ranking(int *nums, int *rank, int size)
+{
+	int	i;
+	int	j;
+	int	count;
+
+	i = 0;
+	while (i < size)
+	{
+		count = 0;
+		j = 0;
+		while (j < size)
+		{
+			if (nums[j] < nums[i])
+				count++;
+			j++;
+		}
+		rank[i] = count;
+		i++;
+	}
+}
