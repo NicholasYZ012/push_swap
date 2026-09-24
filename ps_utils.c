@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juho <juho@student.42kl.edu.my>            +#+  +:+       +#+        */
+/*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/22 10:31:11 by juho              #+#    #+#             */
-/*   Updated: 2026/09/24 15:05:01 by juho             ###   ########.fr       */
+/*   Updated: 2026/09/24 22:13:21 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,16 @@ long	ft_atoi_push_swap(const char *nptr, int *error)
 	return (value * neg);
 }
 
+// nums: array of inputted number values
+// rank: array that stores the rank of each number according to their index values
+// number_of_el: total number of inputted number values OR size of nums 
 void	ranking(int *nums, int *rank, int number_of_el)
 {
 	int	i;
 	int	j;
 
 	i = 0;
+	// Initialising the elements in rank array
 	while (i < number_of_el)
 		rank[i++] = 0;
 	i = 0;
