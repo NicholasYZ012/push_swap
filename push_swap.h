@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juho <juho@student.42kl.edu.my>            +#+  +:+       +#+        */
+/*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 08:38:56 by nilim             #+#    #+#             */
-/*   Updated: 2026/09/22 10:47:59 by juho             ###   ########.fr       */
+/*   Updated: 2026/09/24 10:19:14 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,17 @@
 # include "libft/libft.h"
 # include <limits.h>
 
+typedef struct s_stack
+{
+	int				content;
+	struct s_stack	*next;
+}				t_stack;
+
 // stackops
-int		isEmpty(t_list **stack);
-void	push(t_list **stack, int n);
-int		pop(t_list **stack);
-int		peek(t_list **stack);
+int		isEmpty(t_stack **stack);
+void	push(t_stack **stack, int n);
+int		pop(t_stack **stack);
+int		peek(t_stack **stack);
 
 // sortops
 void	s(char c);
@@ -31,5 +37,8 @@ void	rr(char c);
 int		ft_sqrt(int nb);
 long	ft_atoi_push_swap(const char *nptr, int *error);
 void	ranking(int *nums, int *rank, int size);
+
+t_stack	*ps_lstnew(int content);
+void	ps_lstadd_front(t_stack **lst, t_stack *new);
 
 #endif

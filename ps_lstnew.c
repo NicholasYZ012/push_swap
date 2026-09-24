@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ps_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/19 08:37:22 by nilim             #+#    #+#             */
-/*   Updated: 2026/09/24 10:09:15 by nilim            ###   ########.fr       */
+/*   Created: 2026/08/05 12:54:46 by nilim             #+#    #+#             */
+/*   Updated: 2026/09/24 10:12:29 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft/libft.h"
-#include <stdio.h>
+#include <stdlib.h>
 
-int	main()
+t_stack	*ps_lstnew(int content)
 {
-	static t_stack	*a;
-	// static t_list	*b;
+	t_stack	*new;
 
-	push(&a, 3);
-	printf("peek:%d\n", peek(&a));
-	printf("pop:%d\n", pop(&a));
-	printf("peek:%d\n", peek(&a));
+	new = malloc(sizeof(t_stack));
+	if (new == NULL)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }

@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ps_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/19 08:37:22 by nilim             #+#    #+#             */
-/*   Updated: 2026/09/24 10:09:15 by nilim            ###   ########.fr       */
+/*   Created: 2026/08/05 13:01:31 by nilim             #+#    #+#             */
+/*   Updated: 2026/09/24 10:16:50 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft/libft.h"
-#include <stdio.h>
 
-int	main()
+void	ps_lstadd_front(t_stack **lst, t_stack *new)
 {
-	static t_stack	*a;
-	// static t_list	*b;
-
-	push(&a, 3);
-	printf("peek:%d\n", peek(&a));
-	printf("pop:%d\n", pop(&a));
-	printf("peek:%d\n", peek(&a));
+	if (new == NULL || lst == NULL)
+		return ;
+	new->next = *lst;
+	*lst = new;
 }

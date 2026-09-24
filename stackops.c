@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stackops.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juho <juho@student.42kl.edu.my>            +#+  +:+       +#+        */
+/*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 09:22:50 by nilim             #+#    #+#             */
-/*   Updated: 2026/09/21 21:58:45 by juho             ###   ########.fr       */
+/*   Updated: 2026/09/24 10:17:49 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft/libft.h"
 #include <stdlib.h>
 
-int	isEmpty(t_list **stack)
+int	isEmpty(t_stack **stack)
 {
 	if (stack == NULL)
 		return (-1);
@@ -23,30 +23,30 @@ int	isEmpty(t_list **stack)
 	return (0);
 }
 
-void	push(t_list **stack, int n)
+void	push(t_stack **stack, int n)
 {
 	if (stack == NULL)
 		return ;
-	ft_lstadd_front(stack, ft_lstnew(ft_itoa(n)));
+	ps_lstadd_front(stack, ps_lstnew(n));
 }
 
-int	pop(t_list **stack)
+int	pop(t_stack **stack)
 {
 	int		n;
-	t_list	*temp;
+	t_stack	*temp;
 
 	if (stack == NULL || *stack == NULL)
 		return (-1);
 	temp = *stack;
-	*stack = (*stack)->next;
-	n = ft_atoi(temp->content);
-	ft_lstdelone(temp, free);
+	*stack = temp->next;
+	n = temp->content;
+	free(temp);
 	return (n);
 }
 
-int	peek(t_list **stack)
+int	peek(t_stack **stack)
 {
 	if (stack != NULL && *stack != NULL)
-		return (ft_atoi((*stack)->content));
+		return ((*stack)->content);
 	return (-1);
 }
