@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 08:38:56 by nilim             #+#    #+#             */
-/*   Updated: 2026/09/24 10:19:14 by nilim            ###   ########.fr       */
+/*   Updated: 2026/09/24 10:47:46 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,13 @@ typedef struct s_stack
 {
 	int				content;
 	struct s_stack	*next;
-}				t_stack;
+}	t_stack;
+
+typedef struct s_vars
+{
+	t_stack	*a;
+	t_stack	*b;
+}	t_vars;
 
 // stackops
 int		isEmpty(t_stack **stack);

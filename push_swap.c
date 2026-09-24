@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 08:37:22 by nilim             #+#    #+#             */
-/*   Updated: 2026/09/24 10:09:15 by nilim            ###   ########.fr       */
+/*   Updated: 2026/09/24 10:48:25 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 int	main()
 {
-	static t_stack	*a;
-	// static t_list	*b;
+	t_stack	*a;
 
+	a = &()
 	push(&a, 3);
 	printf("peek:%d\n", peek(&a));
 	printf("pop:%d\n", pop(&a));
