@@ -61,20 +61,22 @@ void	ranking(int *nums, int *rank, int size)
 {
 	int	i;
 	int	j;
-	int	count;
 
 	i = 0;
 	while (i < size)
+		rank[i++] = 0;
+	i = 0;
+	while (i < size)
 	{
-		count = 0;
-		j = 0;
+		j = i + 1;
 		while (j < size)
 		{
 			if (nums[j] < nums[i])
-				count++;
+				rank[i]++;
+			else
+				rank[j]++;
 			j++;
 		}
-		rank[i] = count;
 		i++;
 	}
 }
