@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: juho <juho@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/22 10:31:11 by juho              #+#    #+#             */
-/*   Updated: 2026/09/23 21:41:50 by nilim            ###   ########.fr       */
+/*   Updated: 2026/09/24 15:05:01 by juho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,19 +57,19 @@ long	ft_atoi_push_swap(const char *nptr, int *error)
 	return (value * neg);
 }
 
-void	ranking(int *nums, int *rank, int size)
+void	ranking(int *nums, int *rank, int number_of_el)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < size)
+	while (i < number_of_el)
 		rank[i++] = 0;
 	i = 0;
-	while (i < size)
+	while (i < number_of_el)
 	{
 		j = i + 1;
-		while (j < size)
+		while (j < number_of_el)
 		{
 			if (nums[j] < nums[i])
 				rank[i]++;
