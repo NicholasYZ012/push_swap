@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 09:22:50 by nilim             #+#    #+#             */
-/*   Updated: 2026/09/24 10:17:49 by nilim            ###   ########.fr       */
+/*   Updated: 2026/09/25 10:00:18 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,14 @@ int	isEmpty(t_stack **stack)
 
 void	push(t_stack **stack, int n)
 {
-	if (stack == NULL)
-		return ;
-	ps_lstadd_front(stack, ps_lstnew(n));
+	t_stack	*new;
+	
+	new = malloc(sizeof(t_stack));
+	if (stack == NULL || new == NULL)
+		return (free(new));
+	new->content = n;
+	new->next = *stack;
+	*stack = new;
 }
 
 int	pop(t_stack **stack)

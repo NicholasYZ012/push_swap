@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 08:38:56 by nilim             #+#    #+#             */
-/*   Updated: 2026/09/24 10:47:46 by nilim            ###   ########.fr       */
+/*   Updated: 2026/09/25 10:00:36 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,5 @@ void	rr(char c);
 int		ft_sqrt(int nb);
 long	ft_atoi_push_swap(const char *nptr, int *error);
 void	ranking(int *nums, int *rank, int size);
-
-t_stack	*ps_lstnew(int content);
-void	ps_lstadd_front(t_stack **lst, t_stack *new);
 
 #endif

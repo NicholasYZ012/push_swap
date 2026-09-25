@@ -3,7 +3,6 @@ NAME := push_swap
 
 # Sources and objects
 SRCS := push_swap.c stackops.c sortops.c ps_utils.c \
-		ps_lstnew.c ps_lstadd_front.c
 
 OBJ := $(SRCS:%.c=%.o)
 
