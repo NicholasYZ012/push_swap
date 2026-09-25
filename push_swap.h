@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 08:38:56 by nilim             #+#    #+#             */
-/*   Updated: 2026/09/25 10:00:36 by nilim            ###   ########.fr       */
+/*   Updated: 2026/09/25 10:39:03 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ int		pop(t_stack **stack);
 int		peek(t_stack **stack);
 
 // sortops
-void	s(char c);
-void	p(char c);
-void	r(char c);
-void	rr(char c);
+int		s(t_stack *stack);
+int		p(t_stack **stacka, t_stack **stackb);
+int		r(t_stack **stack);
+int		rr(t_stack **stack);
 
 // ps_utils
 int		ft_sqrt(int nb);

@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/22 10:31:11 by juho              #+#    #+#             */
-/*   Updated: 2026/09/24 22:13:21 by nilim            ###   ########.fr       */
+/*   Updated: 2026/09/25 10:05:30 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void	ranking(int *nums, int *rank, int number_of_el)
 	int	j;
 
 	i = 0;
-	// Initialising the elements in rank array
 	while (i < number_of_el)
 		rank[i++] = 0;
 	i = 0;

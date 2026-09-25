@@ -17,6 +17,12 @@ Operations include: <br>
 - pop
 - peek
 
+## Sorting operations
+- swap: only the number in nodes are swapped, nodes themselves remain
+- push: implemented with pop and push
+- rotate: 
+- reverse rotate
+
 # Resources
 
 <!-- 

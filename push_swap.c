@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 08:37:22 by nilim             #+#    #+#             */
-/*   Updated: 2026/09/25 09:52:50 by nilim            ###   ########.fr       */
+/*   Updated: 2026/09/25 12:29:30 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,18 @@ int	main()
 {
 	static t_vars	bank;
 
+	push(&(bank.a), 1);
 	push(&(bank.a), 3);
-	printf("peek:%d\n", peek(&(bank.a)));
-	printf("pop:%d\n", pop(&(bank.a)));
-	printf("peek:%d\n", peek(&(bank.a)));
+	push(&(bank.a), 5);
+	push(&(bank.a), 20);
+	printf("peek a:%d\n", peek(&(bank.a)));
+	r(&(bank.a));
+	printf("peek a:%d\n", peek(&(bank.a)));
+	rr(&(bank.a));
+	printf("peek a:%d\n", peek(&(bank.a)));
+	rr(&(bank.a));
+	printf("pop a:%d\n", pop(&(bank.a)));
+	r(&(bank.a));
+	r(&(bank.a));
+	printf("peek a:%d\n", peek(&(bank.a)));
 }
