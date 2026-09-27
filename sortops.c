@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 13:09:54 by nilim             #+#    #+#             */
-/*   Updated: 2026/09/25 12:27:47 by nilim            ###   ########.fr       */
+/*   Updated: 2026/09/27 19:51:14 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ int	s(t_stack *stack)
 	return (1);
 }
 
-// push first elem from stackright to stackleft
-int	p(t_stack **stackleft, t_stack **stackright)
+// push first elem from stackb to stacka
+int	p(t_stack **stacka, t_stack **stackb)
 {
 	int	temp;
 
-	if (stackleft == NULL || stackright == NULL)
+	if (stacka == NULL || stackb == NULL)
 		return (0);
-	temp = pop(stackright);
-	push(stackleft, temp);
+	temp = pop(stackb);
+	push(stacka, temp);
 	return (1);
 }
 
@@ -80,4 +80,31 @@ int	rr(t_stack **stack)
 	*stack = last;
 	last->next = curr;
 	return (1);
+}
+
+// can add error message in when printf is done evaluating
+void	ops(t_vars *bank, int op)
+{
+	if (bank != NULL && op == SA && s(bank->a))
+		ft_putstr_fd("sa\n", 1);
+	else if (bank != NULL && op == SB && s(bank->b))
+		ft_putstr_fd("sb\n", 1);
+	else if (bank != NULL && op == SS && s(bank->a) && s(bank->b))
+		ft_putstr_fd("sb\n", 1);
+	else if (bank != NULL && op == PA && p(bank->a, bank->b))
+		ft_putstr_fd("pa\n", 1);
+	else if (bank != NULL && op == PB && p(bank->b, bank->a))
+		ft_putstr_fd("pb\n", 1);
+	else if (bank != NULL && op == RA && r(bank->a))
+		ft_putstr_fd("ra\n", 1);
+	else if (bank != NULL && op == RB && r(bank->b))
+		ft_putstr_fd("rb\n", 1);
+	else if (bank != NULL && op == RR && r(bank->a) && rr(bank->b))
+		ft_putstr_fd("rr\n", 1);
+	else if (bank != NULL && op == RRA && rr(bank->a))
+		ft_putstr_fd("rra\n", 1);
+	else if (bank != NULL && op == RRB && rr(bank->b))
+		ft_putstr_fd("rrb\n", 1);
+	else if (bank != NULL && op == RRR && rr(bank->a) && rr(bank->b))
+		ft_putstr_fd("rrr\n", 1);
 }

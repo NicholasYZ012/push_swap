@@ -18,29 +18,31 @@ Operations include: <br>
 - peek
 
 ## Sorting operations
-- swap: only the number in nodes are swapped, nodes themselves remain
-- push: implemented with pop and push
-- rotate: 
-- reverse rotate
+- swap: swaps first two elements of a stack. Only the number in nodes are swapped, nodes themselves remain
+- push: pushes the top element of one stack to another stack. Implemented with pop and push
+- rotate: shifts up all elements of specified stack by one, first element becomes last
+- reverse rotate: Shift down all elements of specified stack by one, last element becomes first
 
 # Resources
 
-<!-- 
-Push swap delegation
-
-Nic 
+# TODO
+## Nicholas
 1. Main core
-Premise
 stack a and b /
-11 operations
+11 operations / 
 Disorder metric calculation
-3. Complex + adaptive alg
 
-4. Command stuff
+2. Complex + adaptive alg
+
+3. Command stuff
 Error handling
 Strat selection
 List
 
+4. Master operation function (op) can implement an error message when a NULL is passed as var bank
+
+<!-- 
+Push swap delegation
 juho
 1. ranking
 2. Simple + medium alg
