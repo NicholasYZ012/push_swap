@@ -6,7 +6,7 @@
 /*   By: juho <juho@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/28 23:44:50 by juho              #+#    #+#             */
-/*   Updated: 2026/09/29 15:58:40 by juho             ###   ########.fr       */
+/*   Updated: 2026/09/29 23:13:06 by juho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	find_pos(t_stack **stack, int rank)
 }
 
 // rotate a the cheapest way (ra or rra) until rank is on top
-static void	bring_to_top(t_vars *bank, int rank)
+void	bring_to_top(t_vars *bank, int rank)
 {
 	int	size;
 	int	pos;
@@ -71,23 +71,17 @@ static void	bring_to_top(t_vars *bank, int rank)
 	}
 }
 
-// selection sort: pb ranks 0..n-1 in order, then pa everything back
+// picks the cheapest method for the size of a, does nothing if sorted
 // stack a must hold ranks (0..n-1), not raw values
 void	simple_sort(t_vars *bank)
 {
 	int	size;
-	int	rank;
 
-	if (bank == NULL)
+	if (bank == NULL || is_sorted(&bank->a))
 		return ;
 	size = (int)stack_size(&bank->a);
-	rank = 0;
-	while (rank < size)
-	{
-		bring_to_top(bank, rank);
-		ops(bank, PB);
-		rank++;
-	}
-	while (!isEmpty(&bank->b))
-		ops(bank, PA);
+	if (size == 2)
+		ops(bank, SA);
+	else
+		sort_small(bank, size);
 }

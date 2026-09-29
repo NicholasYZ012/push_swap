@@ -50,11 +50,19 @@ int		p(t_stack **stacka, t_stack **stackb);
 int		r(t_stack **stack);
 int		rr(t_stack **stack);
 
+// ops
+void	ops(t_vars *bank, int op);
+
 // simple_sort
 size_t	stack_size(t_stack **stack);
 int		find_pos(t_stack **stack, int rank);
+void	bring_to_top(t_vars *bank, int rank);
 void	simple_sort(t_vars *bank);
-void	ops(t_vars *bank, int op);
+
+// small_sort
+int		is_sorted(t_stack **stack);
+void	sort_three(t_vars *bank);
+void	sort_small(t_vars *bank, int size);
 
 // ps_utils
 int		ft_sqrt(int nb);

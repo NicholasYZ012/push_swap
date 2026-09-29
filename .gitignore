@@ -1,7 +1,6 @@
 # Object files and libraries
 *.o
 *.a
-*.md
 
 # Executable
 push_swap

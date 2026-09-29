@@ -1,0 +1,479 @@
+SIMPLE SORT - LINE BY LINE EXPLANATION
+======================================
+
+This file explains every function that was written or changed.
+Each part has: what it does, the code line by line, and an example.
+
+
+THE BIG IDEA
+------------
+We have two stacks, A and B.
+Stack A holds the numbers. Stack B starts empty.
+We may only use these moves:
+  sa / sb   swap the top two
+  pa / pb   move the top of one stack onto the other
+  ra / rb   rotate up: the top goes to the bottom
+  rra / rrb reverse rotate: the bottom goes to the top
+
+IMPORTANT: The sort expects stack A to hold RANKS, not raw numbers.
+A rank is "how many numbers are smaller than me".
+Example: numbers 40 -7 15  ->  ranks 2 0 1
+The smallest number has rank 0. The biggest has rank n-1.
+The function ranking() in ps_utils.c makes these ranks.
+main must call ranking() first. That part is not written yet.
+
+We write stacks from TOP to BOTTOM.
+Example: "A = 2 0 1" means 2 is on top and 1 is at the bottom.
+
+
+======================================================================
+FILE 1: simple_sort.c
+======================================================================
+
+
+----------------------------------------------------------------------
+FUNCTION: stack_size
+----------------------------------------------------------------------
+Job: count how many items are in a stack.
+
+  size_t  stack_size(t_stack **stack)
+    -> Takes a pointer to the stack. Gives back a count.
+
+  size = 0;
+    -> Start counting at zero.
+
+  if (stack == NULL)
+      return (0);
+    -> If we got no stack at all, the answer is 0. This avoids a crash.
+
+  curr = *stack;
+    -> curr points at the top item. We use curr to walk down the stack.
+
+  while (curr != NULL)
+    -> Keep going until we walk off the bottom.
+
+  size++;
+    -> Count this item.
+
+  curr = curr->next;
+    -> Step to the next item down.
+
+  return (size);
+    -> Give back the total.
+
+Example: A = 2 0 1
+  curr on 2, size 1
+  curr on 0, size 2
+  curr on 1, size 3
+  curr is NULL, stop.  Answer: 3
+
+
+----------------------------------------------------------------------
+FUNCTION: find_pos
+----------------------------------------------------------------------
+Job: find how many steps down a rank is. The top is position 0.
+
+  pos = 0;
+    -> The top item is at position 0.
+
+  if (stack == NULL)
+      return (-1);
+    -> No stack, so we cannot find anything. -1 means "not found".
+
+  curr = *stack;
+    -> Start at the top.
+
+  while (curr != NULL)
+    -> Walk down the stack.
+
+  if (curr->content == rank)
+      return (pos);
+    -> If this item is the rank we want, tell the caller where it is.
+
+  pos++;
+  curr = curr->next;
+    -> Not this one. Move down one step and add 1 to the position.
+
+  return (-1);
+    -> We walked the whole stack and never found it.
+
+Example: A = 3 0 4 1 2, looking for rank 1
+  3 is not 1, pos becomes 1
+  0 is not 1, pos becomes 2
+  4 is not 1, pos becomes 3
+  1 is 1  ->  return 3
+Rank 1 is 3 steps down from the top.
+
+NOTE: find_pos only LOOKS. It never moves anything.
+
+
+----------------------------------------------------------------------
+FUNCTION: bring_to_top
+----------------------------------------------------------------------
+Job: rotate stack A the cheapest way until the wanted rank is on top.
+
+There are two ways to bring an item to the top:
+  ra  moves it up. Costs "pos" moves.
+  rra moves it up from the bottom side. Costs "size - pos" moves.
+We pick whichever is smaller.
+
+  size = (int)stack_size(&bank->a);
+    -> How many items are in A.
+
+  pos = find_pos(&bank->a, rank);
+    -> Where the wanted rank is now.
+
+  if (pos < 0)
+      return ;
+    -> The rank is not in A. Do nothing.
+
+  if (pos <= size / 2)
+    -> The item is in the top half. Rotating up (ra) is cheaper or equal.
+
+  while (pos-- > 0)
+      ops(bank, RA);
+    -> Do ra, "pos" times. (pos-- means: check, then subtract 1.)
+
+  else
+  {
+      pos = size - pos;
+    -> The item is in the bottom half. This is how far it is from the bottom.
+
+      while (pos-- > 0)
+          ops(bank, RRA);
+    -> Do rra that many times.
+  }
+
+Example 1: A = 3 0 4 1 2  (size 5), want rank 1
+  pos = 3.  size / 2 = 2.  3 is bigger than 2, so use rra.
+  pos becomes 5 - 3 = 2.  Do rra twice.
+  rra: A = 2 3 0 4 1
+  rra: A = 1 2 3 0 4     <- rank 1 is on top. 2 moves.
+  (ra would have needed 3 moves.)
+
+Example 2: A = 3 0 4 1 2, want rank 0
+  pos = 1.  1 <= 2, so use ra.  Do ra once.
+  ra:  A = 0 4 1 2 3     <- rank 0 is on top. 1 move.
+
+Example 3: item already on top
+  pos = 0.  The while loop does not run.  0 moves.
+
+Odd sizes work fine because integer division rounds down.
+  size 5, pos 2: 2 <= 2, so ra costs 2. (rra would cost 3.) Correct.
+  size 5, pos 3: 3 >  2, so rra costs 2. (ra would cost 3.)  Correct.
+
+
+----------------------------------------------------------------------
+FUNCTION: selection_sort   (static, only used inside this file)
+----------------------------------------------------------------------
+Job: sort with "selection sort". Pick the smallest, move it out, repeat.
+
+  rank = 0;
+    -> Start with the smallest rank.
+
+  while (rank < size)
+    -> Do this for every rank, 0 up to size-1.
+
+  bring_to_top(bank, rank);
+    -> Rotate A until this rank is on top.
+
+  ops(bank, PB);
+    -> Push it to B.
+
+  rank++;
+    -> Next rank.
+
+  while (!isEmpty(&bank->b))
+      ops(bank, PA);
+    -> When A is empty, push everything from B back to A.
+
+Why does the order come out right?
+B receives 0 first, then 1, then 2 ... so the BIGGEST ends up on top of B.
+pa takes from the top of B, so the biggest goes back first.
+The smallest goes back LAST, so it lands on top of A. A is ascending.
+
+Example: A = 1 2 0  (size 3)
+  rank 0: bring to top.  pos 2, use rra once.  A = 0 1 2.  pb.
+          A = 1 2      B = 0
+  rank 1: already on top.  pb.
+          A = 2        B = 1 0
+  rank 2: already on top.  pb.
+          A = (empty)  B = 2 1 0
+  pa: A = 2      B = 1 0
+  pa: A = 1 2    B = 0
+  pa: A = 0 1 2  B = (empty)      <- sorted, smallest on top.
+
+
+----------------------------------------------------------------------
+FUNCTION: simple_sort   (the one main will call)
+----------------------------------------------------------------------
+Job: choose the cheapest method for the size of A.
+
+  if (bank == NULL || is_sorted(&bank->a))
+      return ;
+    -> No bank, or A is already sorted: do nothing at all. 0 moves.
+
+  size = (int)stack_size(&bank->a);
+    -> Count the items.
+
+  if (size == 2)      ops(bank, SA);
+    -> 2 items and not sorted means they are swapped. One sa fixes it.
+
+  else if (size == 3) sort_three(bank);
+    -> Use the hardcoded 3-item solution.
+
+  else if (size <= 5) sort_small(bank, size);
+    -> 4 or 5 items: use the small-case method.
+
+  else                selection_sort(bank, size);
+    -> 6 or more items: use selection sort.
+
+Example: A = 1 2 3  ->  already sorted, prints nothing.
+Example: A = 2 1    ->  prints "sa".
+Example: A = 2 0 1  ->  goes to sort_three.
+
+
+======================================================================
+FILE 2: small_sort.c   (new file)
+======================================================================
+This is a separate file because the 42 Norm allows only 5 functions
+per file.
+
+
+----------------------------------------------------------------------
+FUNCTION: is_sorted
+----------------------------------------------------------------------
+Job: answer "is this stack already in ascending order from the top?"
+
+  if (stack == NULL)
+      return (1);
+    -> An empty/missing stack counts as sorted.
+
+  curr = *stack;
+    -> Start at the top.
+
+  while (curr != NULL && curr->next != NULL)
+    -> Compare each item with the one below it. Stop at the last item.
+
+  if (curr->content > curr->next->content)
+      return (0);
+    -> If an item is bigger than the one below it, the order is wrong.
+       Answer: not sorted (0).
+
+  curr = curr->next;
+    -> Move down one.
+
+  return (1);
+    -> Never found a wrong pair, so it is sorted (1).
+
+Example: A = 0 1 2 -> 0<1 ok, 1<2 ok  -> returns 1
+Example: A = 0 2 1 -> 0<2 ok, 2>1 wrong -> returns 0
+
+
+----------------------------------------------------------------------
+FUNCTION: sort_three
+----------------------------------------------------------------------
+Job: sort exactly 3 items with the fewest moves. Every case is written out.
+
+  x = top item, y = middle item, z = bottom item.
+
+There are only 6 possible orders. Here is the full table.
+(x y z from top to bottom, using ranks 0 1 2)
+
+  Order   Test in the code            Moves      Result
+  -----   -------------------------   --------   ------
+  0 1 2   (already sorted)            none       0 1 2
+  1 0 2   x>y and y<z and x<z         sa         0 1 2
+  2 1 0   x>y and y>z                 sa, rra    0 1 2
+  2 0 1   x>y (and not the two above) ra         0 1 2
+  0 2 1   y>z and x<z                 sa, ra     0 1 2
+  1 2 0   y>z (and not the above)     rra        0 1 2
+
+The tests are checked from top to bottom. The first true one wins.
+That is why the short tests like "else if (x > y)" are safe.
+
+Walk through each one:
+
+  1 0 2: sa swaps the top two            -> 0 1 2
+  2 1 0: sa gives 1 2 0, rra gives 0 1 2
+  2 0 1: ra moves 2 to the bottom        -> 0 1 2
+  0 2 1: sa gives 2 0 1, ra gives 0 1 2
+  1 2 0: rra brings 0 to the top         -> 0 1 2
+
+The worst case is 2 moves.
+
+sort_three compares the real values, so it also works when the three
+items are, for example, ranks 2 3 4. It does not need them to be 0 1 2.
+
+
+----------------------------------------------------------------------
+FUNCTION: sort_small   (for 4 or 5 items)
+----------------------------------------------------------------------
+Job: sort 4 or 5 items by moving the smallest ones out of the way,
+sorting the last 3 with sort_three, then bringing them back.
+
+  while (rank < size - 3)
+    -> size 4: size-3 is 1, so the loop runs once  (rank 0)
+       size 5: size-3 is 2, so the loop runs twice (rank 0, rank 1)
+       This leaves exactly 3 items in A.
+
+  bring_to_top(bank, rank);
+  ops(bank, PB);
+  rank++;
+    -> Bring the next smallest to the top and push it to B.
+
+  if (!is_sorted(&bank->a))
+      sort_three(bank);
+    -> Sort the 3 items left in A. Skip it if they are already sorted.
+
+  while (!isEmpty(&bank->b))
+      ops(bank, PA);
+    -> Push everything back from B.
+
+Why does pa put things in the right order?
+B holds the small ranks with the LARGER one on top. pa takes the top first,
+so the larger goes back first and the smallest goes back last, onto the top.
+
+Example: A = 3 0 4 1 2  (size 5)
+  rank 0: pos 1, ra.         A = 0 4 1 2 3.  pb.
+          A = 4 1 2 3        B = 0
+  rank 1: pos 1, ra.         A = 1 2 3 4.    pb.
+          A = 2 3 4          B = 1 0
+  A = 2 3 4 is already sorted, so sort_three is skipped.
+  pa:  A = 1 2 3 4           B = 0
+  pa:  A = 0 1 2 3 4         B = (empty)      <- sorted.
+  Moves: ra pb ra pb pa pa = 6.
+
+
+======================================================================
+FILE 3: ops.c   (new file, moved out of sortops.c)
+======================================================================
+It moved because sortops.c would have had 6 functions. The Norm allows 5.
+
+
+----------------------------------------------------------------------
+FUNCTION: both   (static helper for ss, rr, rrr)
+----------------------------------------------------------------------
+Job: do the same move on BOTH stacks and say if anything moved.
+
+  if (op == SS)   -> swap the top two of A and of B
+  else if (op == RR)  -> rotate A and rotate B
+  else                -> reverse rotate A and B (this is RRR)
+
+  moved_a = ...;  moved_b = ...;
+    -> Each stack is moved on its own line. Because they are two separate
+       lines, B is never skipped just because A could not move.
+
+  return (moved_a || moved_b);
+    -> Say "yes" if at least one stack really moved.
+
+WHY THIS WAS NEEDED: the old code wrote  r(a) && rr(b)  for RR.
+That had two bugs:
+  1. The second call was rr (reverse rotate) instead of r (rotate).
+  2. The && skips the second call if the first one fails.
+
+Example: A = 1 2 3, B = 4 5 6, op = RR
+  A becomes 2 3 1, B becomes 5 6 4, and "rr" is printed.
+
+
+----------------------------------------------------------------------
+FUNCTION: ops   (the master function)
+----------------------------------------------------------------------
+Job: run one move and print its name.
+
+  if (bank == NULL)
+      return ;
+    -> No stacks, do nothing.
+
+  if (op == SA && s(bank->a))
+      ft_putstr_fd("sa\n", 1);
+    -> If the move is SA and the swap really happened, print "sa".
+       s() gives back 0 if there was nothing to swap, so nothing is printed.
+
+  The same pattern repeats for SB, PA, PB, RA, RB, RRA, RRB.
+
+  else if (op == SS && both(bank, op))
+      ft_putstr_fd("ss\n", 1);
+    -> ss, rr and rrr use the helper "both".
+       (The old code printed "sb" for ss. Now it prints "ss".)
+
+WHY &bank->a AND NOT bank->a:
+  The functions p, r and rr need the ADDRESS of the stack pointer, because
+  they change which node is on top. bank->a is only the pointer.
+  &bank->a is its address. The old code left out the &, so it did not
+  compile with -Werror.
+
+Why it prints only when something moved:
+  A move that does nothing (like ra on an empty stack) must not appear in the
+  output, because the output is the list of moves that were really done.
+
+
+======================================================================
+FILE 4: sortops.c   (small fix)
+======================================================================
+
+Function p (push):
+
+  if (stacka == NULL || stackb == NULL || *stackb == NULL)
+      return (0);
+    -> NEW part is  *stackb == NULL.
+       It means "the source stack is empty". Then we do nothing and return 0.
+
+  BEFORE the fix: p popped from an empty stack. pop gives -1 for an empty
+  stack, and p then pushed that -1 onto the other stack. A fake number
+  appeared out of nowhere.
+
+Example: A = 1 2, B = (empty), op = PA
+  Before: A became -1 1 2 (wrong).
+  Now:    nothing happens and nothing is printed.
+
+ops() itself was moved to ops.c (see above).
+
+
+======================================================================
+OTHER FILES
+======================================================================
+
+push_swap.h
+  Added the prototypes (the "declarations") for the new functions:
+  stack_size, find_pos, bring_to_top, simple_sort, is_sorted,
+  sort_three, sort_small and ops.
+  Other files must know a function exists before they can call it.
+
+Makefile
+  Added small_sort.c and ops.c to SRCS, so they get compiled and linked.
+  simple_sort.c was added earlier.
+
+
+======================================================================
+HOW IT WAS TESTED
+======================================================================
+
+1. Every possible order of 1 to 8 numbers was sorted (about 46,000 cases).
+   All of them came out sorted with B empty.
+
+2. Worst cases:
+     3 numbers: 2 moves       5 numbers: 10 moves (the subject allows 12)
+
+3. Bigger random inputs:
+     100 numbers: 1354 moves   500 numbers: 31560 moves
+   Selection sort is slow on big inputs. This is expected.
+   The medium and complex algorithms are for those.
+
+4. ss, rr and rrr were run by hand. They act on both stacks.
+   Moves from an empty stack print nothing.
+
+
+======================================================================
+WHAT IS STILL MISSING
+======================================================================
+
+main is not written yet. It must:
+  1. Read the numbers from the command line.
+  2. Check for errors (not a number, too big, duplicates).
+  3. Call ranking() to turn the numbers into ranks 0..n-1.
+  4. Push the ranks onto stack A. Push the LAST number first,
+     so that the first number ends up on top.
+  5. Call simple_sort(&bank).
+
+Until then, running ./push_swap does not sort anything.

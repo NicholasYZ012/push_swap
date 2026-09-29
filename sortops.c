@@ -32,7 +32,7 @@ int	p(t_stack **stacka, t_stack **stackb)
 {
 	int	temp;
 
-	if (stacka == NULL || stackb == NULL)
+	if (stacka == NULL || stackb == NULL || *stackb == NULL)
 		return (0);
 	temp = pop(stackb);
 	push(stacka, temp);
@@ -45,8 +45,7 @@ int	r(t_stack **stack)
 	t_stack	*curr;
 	t_stack	*first;
 
-	// last means previous node
-	if (stack == NULL || *stack == NULL)
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 		return (0);
 	first = *stack;
 	curr = *stack;
@@ -59,13 +58,13 @@ int	r(t_stack **stack)
 }
 
 // Shift down all elements of specified stack by one, last become first
+// walks with last one behind curr, then moves curr (the tail) to the top
 int	rr(t_stack **stack)
 {
 	t_stack	*last;
 	t_stack	*curr;
 
-	// last means previous node
-	if (stack == NULL || *stack == NULL)
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 		return (0);
 	curr = *stack;
 	while (curr->next != NULL)
@@ -74,37 +73,9 @@ int	rr(t_stack **stack)
 		curr = curr->next;
 	}
 	last->next = NULL;
-	// last now means the last node, curr holds the first node
 	last = curr;
 	curr = *stack;
 	*stack = last;
 	last->next = curr;
 	return (1);
-}
-
-// can add error message in when printf is done evaluating
-void	ops(t_vars *bank, int op)
-{
-	if (bank != NULL && op == SA && s(bank->a))
-		ft_putstr_fd("sa\n", 1);
-	else if (bank != NULL && op == SB && s(bank->b))
-		ft_putstr_fd("sb\n", 1);
-	else if (bank != NULL && op == SS && s(bank->a) && s(bank->b))
-		ft_putstr_fd("sb\n", 1);
-	else if (bank != NULL && op == PA && p(&bank->a, &bank->b))
-		ft_putstr_fd("pa\n", 1);
-	else if (bank != NULL && op == PB && p(&bank->b, &bank->a))
-		ft_putstr_fd("pb\n", 1);
-	else if (bank != NULL && op == RA && r(&bank->a))
-		ft_putstr_fd("ra\n", 1);
-	else if (bank != NULL && op == RB && r(&bank->b))
-		ft_putstr_fd("rb\n", 1);
-	else if (bank != NULL && op == RR && r(&bank->a) && rr(&bank->b))
-		ft_putstr_fd("rr\n", 1);
-	else if (bank != NULL && op == RRA && rr(&bank->a))
-		ft_putstr_fd("rra\n", 1);
-	else if (bank != NULL && op == RRB && rr(&bank->b))
-		ft_putstr_fd("rrb\n", 1);
-	else if (bank != NULL && op == RRR && rr(&bank->a) && rr(&bank->b))
-		ft_putstr_fd("rrr\n", 1);
 }
