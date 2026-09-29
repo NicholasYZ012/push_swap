@@ -91,20 +91,20 @@ void	ops(t_vars *bank, int op)
 		ft_putstr_fd("sb\n", 1);
 	else if (bank != NULL && op == SS && s(bank->a) && s(bank->b))
 		ft_putstr_fd("sb\n", 1);
-	else if (bank != NULL && op == PA && p(bank->a, bank->b))
+	else if (bank != NULL && op == PA && p(&bank->a, &bank->b))
 		ft_putstr_fd("pa\n", 1);
-	else if (bank != NULL && op == PB && p(bank->b, bank->a))
+	else if (bank != NULL && op == PB && p(&bank->b, &bank->a))
 		ft_putstr_fd("pb\n", 1);
-	else if (bank != NULL && op == RA && r(bank->a))
+	else if (bank != NULL && op == RA && r(&bank->a))
 		ft_putstr_fd("ra\n", 1);
-	else if (bank != NULL && op == RB && r(bank->b))
+	else if (bank != NULL && op == RB && r(&bank->b))
 		ft_putstr_fd("rb\n", 1);
-	else if (bank != NULL && op == RR && r(bank->a) && rr(bank->b))
+	else if (bank != NULL && op == RR && r(&bank->a) && rr(&bank->b))
 		ft_putstr_fd("rr\n", 1);
-	else if (bank != NULL && op == RRA && rr(bank->a))
+	else if (bank != NULL && op == RRA && rr(&bank->a))
 		ft_putstr_fd("rra\n", 1);
-	else if (bank != NULL && op == RRB && rr(bank->b))
+	else if (bank != NULL && op == RRB && rr(&bank->b))
 		ft_putstr_fd("rrb\n", 1);
-	else if (bank != NULL && op == RRR && rr(bank->a) && rr(bank->b))
+	else if (bank != NULL && op == RRR && rr(&bank->a) && rr(&bank->b))
 		ft_putstr_fd("rrr\n", 1);
 }

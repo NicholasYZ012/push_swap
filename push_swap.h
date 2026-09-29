@@ -50,6 +50,12 @@ int		p(t_stack **stacka, t_stack **stackb);
 int		r(t_stack **stack);
 int		rr(t_stack **stack);
 
+// simple_sort
+size_t	stack_size(t_stack **stack);
+int		find_pos(t_stack **stack, int rank);
+void	simple_sort(t_vars *bank);
+void	ops(t_vars *bank, int op);
+
 // ps_utils
 int		ft_sqrt(int nb);
 long	ft_atoi_push_swap(const char *nptr, int *error);
