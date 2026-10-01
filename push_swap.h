@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 08:38:56 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/01 15:28:34 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/01 16:03:22 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,14 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
+// ncount: total amount of numbers in the list inputted
+// nums: array of inputted number values
+// rank: array that stores the rank of each number according to their index values
 typedef struct s_vars
 {
 	t_stack	*a;
 	t_stack	*b;
+	int		ncount;
 	int		*nums;
 	int		*rank;
 }	t_vars;
@@ -44,7 +48,7 @@ typedef struct s_vars
 int		isEmpty(t_stack **stack);
 void	push(t_stack **stack, int n);
 int		pop(t_stack **stack);
-int		peek(t_stack **stack);
+int		peek(t_stack *stack);
 
 // sortops
 int		s(t_stack *stack);

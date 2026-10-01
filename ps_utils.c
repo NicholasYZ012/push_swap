@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/22 10:31:11 by juho              #+#    #+#             */
-/*   Updated: 2026/10/01 15:03:17 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/01 15:36:37 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	ranking(int *nums, int *rank, int number_of_el)
 		i++;
 	}
 }
+
 void	free_stack(t_stack **stack)
 {
 	while (!isEmpty(stack))

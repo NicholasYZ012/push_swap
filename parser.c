@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/01 15:06:04 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/01 15:29:53 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/01 15:37:19 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static int	fill_nums(int n, char **argv, int *nums)
 	return (1);
 }
 
+// Check for duplicates
 static int	has_duplicates(int *nums, int n)
 {
 	int	i;
@@ -52,6 +53,8 @@ static int	has_duplicates(int *nums, int n)
 	return (0);
 }
 
+// argv: user input
+// ncount: total amount of numbers in the list inputted
 int	parser(t_vars *bank, char **argv, int ncount)
 {
 	bank->nums = malloc(sizeof(int) * (ncount));

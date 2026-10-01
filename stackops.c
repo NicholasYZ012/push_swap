@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 09:22:50 by nilim             #+#    #+#             */
-/*   Updated: 2026/09/25 10:56:35 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/01 15:51:38 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int	pop(t_stack **stack)
 	return (n);
 }
 
-int	peek(t_stack **stack)
+int	peek(t_stack *stack)
 {
-	if (stack != NULL && *stack != NULL)
-		return ((*stack)->content);
+	if (stack != NULL)
+		return (stack->content);
 	return (-1);
 }

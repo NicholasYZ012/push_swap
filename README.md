@@ -40,6 +40,7 @@ Strat selection
 List
 
 4. Master operation function (op) can implement an error message when a NULL is passed as var bank
+5. code for parser (all functions in that file) can be majorly optimised
 
 <!-- 
 Push swap delegation
