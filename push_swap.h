@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 08:38:56 by nilim             #+#    #+#             */
-/*   Updated: 2026/09/27 19:39:59 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/01 15:28:34 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct s_vars
 {
 	t_stack	*a;
 	t_stack	*b;
+	int		*nums;
+	int		*rank;
 }	t_vars;
 
 // stackops
@@ -53,6 +55,9 @@ int		rr(t_stack **stack);
 // ops
 void	ops(t_vars *bank, int op);
 
+// parser
+int		parser(t_vars *bank, char **argv, int ncount);
+
 // simple_sort
 size_t	stack_size(t_stack **stack);
 int		find_pos(t_stack **stack, int rank);
@@ -68,5 +73,6 @@ void	sort_small(t_vars *bank, int size);
 int		ft_sqrt(int nb);
 long	ft_atoi_push_swap(const char *nptr, int *error);
 void	ranking(int *nums, int *rank, int size);
+void	free_stack(t_stack **stack);
 
 #endif
