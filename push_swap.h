@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 08:38:56 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/01 16:03:22 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/01 18:02:25 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define PUSH_SWAP_H
 # include "libft/libft.h"
 # include <limits.h>
+
+// push swap operations
 # define SA 1
 # define SB 2
 # define SS 3
@@ -26,26 +28,35 @@
 # define RRB 10
 # define RRR 11
 
+// strategy selection
+# define ADP 0
+# define SMP 1
+# define MED 2
+# define CPX 3
+
 typedef struct s_stack
 {
 	int				content;
 	struct s_stack	*next;
 }	t_stack;
 
-// ncount: total amount of numbers in the list inputted
-// nums: array of inputted number values
-// rank: array that stores the rank of each number according to their index values
+// ncount:	total amount of numbers in the list inputted
+// nums:	array of inputted number values
+// rank:	array that stores the rank of each number according 
+// 			to their index values
 typedef struct s_vars
 {
 	t_stack	*a;
 	t_stack	*b;
+	int		strat;
 	int		ncount;
 	int		*nums;
 	int		*rank;
+	float	disorder;
 }	t_vars;
 
 // stackops
-int		isEmpty(t_stack **stack);
+int		isempty(t_stack **stack);
 void	push(t_stack **stack, int n);
 int		pop(t_stack **stack);
 int		peek(t_stack *stack);
@@ -60,7 +71,7 @@ int		rr(t_stack **stack);
 void	ops(t_vars *bank, int op);
 
 // parser
-int		parser(t_vars *bank, char **argv, int ncount);
+int	parser(t_vars *bank, char **argv);
 
 // simple_sort
 size_t	stack_size(t_stack **stack);

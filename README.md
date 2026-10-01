@@ -30,12 +30,12 @@ Operations include: <br>
 1. Main core
 stack a and b /
 11 operations / 
-Disorder metric calculation
+Disorder metric calculation/
 
 2. Complex + adaptive alg
 
 3. Command stuff
-Error handling
+Error handling /
 Strat selection
 List
 

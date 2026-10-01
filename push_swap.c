@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 08:37:22 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/01 16:02:17 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/01 18:01:46 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (0);
-	// Algorithm specifier parser that can also be inserted within parser itself
-	if (parser(&bank, argv, bank.ncount))
+	bank.ncount = argc - 1;
+	if (parser(&bank, argv))
 		ft_putstr_fd("nice\n", 1);
-	// ops(&bank, RA);
-	// ops(&bank, RA);
+	printf("disorder: %f\n", bank.disorder);
 	printf("peek A: %d\n", peek(bank.a));
 	free(bank.nums);
 	free(bank.rank);

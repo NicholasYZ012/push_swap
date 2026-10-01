@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 09:22:50 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/01 15:51:38 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/01 17:58:58 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft/libft.h"
 #include <stdlib.h>
 
-int	isEmpty(t_stack **stack)
+int	isempty(t_stack **stack)
 {
 	if (stack == NULL)
 		return (-1);

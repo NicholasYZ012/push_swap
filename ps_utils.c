@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/22 10:31:11 by juho              #+#    #+#             */
-/*   Updated: 2026/10/01 15:36:37 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/01 17:59:24 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ long	ft_atoi_push_swap(const char *nptr, int *error)
 }
 
 // nums: array of inputted number values
-// rank: array that stores the rank of each number according to their index values
+// rank: array that stores the rank of each number 
+// 		 according to their index values
 // number_of_el: total number of inputted number values OR size of nums 
 void	ranking(int *nums, int *rank, int number_of_el)
 {
@@ -86,6 +87,6 @@ void	ranking(int *nums, int *rank, int number_of_el)
 
 void	free_stack(t_stack **stack)
 {
-	while (!isEmpty(stack))
+	while (!isempty(stack))
 		pop(stack);
 }

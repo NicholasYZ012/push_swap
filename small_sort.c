@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   small_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juho <juho@student.42kl.edu.my>            +#+  +:+       +#+        */
+/*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/28 23:44:50 by juho              #+#    #+#             */
-/*   Updated: 2026/09/29 23:35:18 by juho             ###   ########.fr       */
+/*   Updated: 2026/10/01 17:59:42 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,6 @@ void	sort_small(t_vars *bank, int size)
 	}
 	if (!is_sorted(&bank->a))
 		sort_three(bank);
-	while (!isEmpty(&bank->b))
+	while (!isempty(&bank->b))
 		ops(bank, PA);
 }

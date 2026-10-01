@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/01 15:06:04 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/01 15:37:19 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/01 18:02:09 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,56 @@ static int	has_duplicates(int *nums, int n)
 	return (0);
 }
 
+static float	calc_disorder(t_stack *stack)
+{
+	t_stack	*left;
+	t_stack	*right;
+	float	pairs;
+	float	mistakes;
+
+	left = stack;
+	pairs = 0;
+	mistakes = 0;
+	while (left != NULL && left->next != NULL)
+	{
+		right = left->next;
+		pairs++;
+		while (right->next != NULL)
+		{
+			if (left->content > right->content)
+				mistakes++;
+			right = right->next;
+			pairs++;
+		}
+		left = left->next;
+	}
+	return (mistakes / pairs);
+}
+
 // argv: user input
 // ncount: total amount of numbers in the list inputted
-int	parser(t_vars *bank, char **argv, int ncount)
+int	parser(t_vars *bank, char **argv)
 {
+	int ncount;
+	
+	if (ft_strnstr(argv[1], "--simple", 8) && argv++ && bank->ncount--)
+		bank->strat = SMP;
+	else if (ft_strnstr(argv[1], "--medium", 8) && argv++ && bank->ncount--)
+		bank->strat = MED;
+	else if (ft_strnstr(argv[1], "--complex", 8) && argv++ && bank->ncount--)
+		bank->strat = CPX;
+	else if (ft_strnstr(argv[1], "--adaptive", 10) && argv++ && bank->ncount--)
+		bank->strat = ADP;
+	ncount = bank->ncount;
 	bank->nums = malloc(sizeof(int) * (ncount));
 	bank->rank = malloc(sizeof(int) * (ncount));
-	if (bank->nums && bank->rank && fill_nums(ncount, argv, bank->nums) && !has_duplicates(bank->nums, ncount))
+	if (bank->nums && bank->rank && fill_nums(ncount, argv, bank->nums)
+		&& !has_duplicates(bank->nums, ncount))
 	{
 		ranking(bank->nums, bank->rank, ncount);
 		while (ncount-- > 0)
 			push(&bank->a, bank->rank[ncount]);
+		bank->disorder = calc_disorder(bank->a);
 		return (1);
 	}
 	else
