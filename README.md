@@ -36,7 +36,7 @@ Disorder metric calculation/
 
 3. Command stuff
 Error handling /
-Strat selection
+Strat selection /
 List
 
 4. Master operation function (op) can implement an error message when a NULL is passed as var bank

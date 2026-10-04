@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 08:38:56 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/01 18:02:25 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/04 17:50:42 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
-// ncount:	total amount of numbers in the list inputted
+// ncount:	total amount of numbers in the list
 // nums:	array of inputted number values
-// rank:	array that stores the rank of each number according 
+// rank:	array that stores the rank of each number according
 // 			to their index values
 typedef struct s_vars
 {
@@ -83,6 +83,9 @@ void	simple_sort(t_vars *bank);
 int		is_sorted(t_stack **stack);
 void	sort_three(t_vars *bank);
 void	sort_small(t_vars *bank, int size);
+
+// complex_sort
+void	complex_sort(t_vars *bank);
 
 // ps_utils
 int		ft_sqrt(int nb);
