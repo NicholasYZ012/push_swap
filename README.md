@@ -45,8 +45,8 @@ List
 <!-- 
 Push swap delegation
 juho
-1. ranking
-2. Simple + medium alg
+1. ranking/
+2. Simple/ + medium alg
 5. Benchmark mode 
 6. Bonus checker 
  -->

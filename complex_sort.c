@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 15:11:50 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/04 18:38:13 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/05 11:06:06 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,14 @@ void	complex_sort(t_vars *bank)
 	int		ncount;
 	t_stack	*curr;
 
-	ncount = bank.ncount;
+	ncount = bank->ncount;
 	digcount = 0;
 	while (ncount != 0)
 	{
 		while (curr != NULL)
 		{
-			if (bank->a & (1 << digcount) != 0)
+			curr = bank->a;
+			if ((bank->a->content & (1 << digcount)) != 0)
 				ops(bank, PA);
 		}
 		merge(bank);
