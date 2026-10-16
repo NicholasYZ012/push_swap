@@ -20,12 +20,8 @@ int	ft_sqrt(int nb)
 		return (0);
 	i = 0;
 	while (i * i <= nb)
-	{
-		if (i * i == nb)
-			return (i);
 		i++;
-	}
-	return (0);
+	return (i - 1);
 }
 
 long	ft_atoi_push_swap(const char *nptr, int *error)

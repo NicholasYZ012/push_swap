@@ -88,6 +88,13 @@ void	sort_small(t_vars *bank, int size);
 // complex_sort
 void	complex_sort(t_vars *bank);
 
+// medium_sort
+void	medium_sort(t_vars *bank);
+int		cheapest(t_stack *a, int limit);
+void	rotate_by(t_vars *bank, int steps, int up, int down);
+void	bring_to_top_b(t_vars *bank, int rank);
+int		dist_b(t_vars *bank, int rank);
+
 // ps_utils
 int		ft_sqrt(int nb);
 long	ft_atoi_push_swap(const char *nptr, int *error);

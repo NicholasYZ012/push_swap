@@ -5,7 +5,7 @@ NAME := push_swap
 SRCS := push_swap.c stackops.c sortops.c ps_utils.c \
 		parser.c \
 		simple_sort.c small_sort.c ops.c \
-		complex_sort.c
+		complex_sort.c medium_sort.c medium_utils.c
 
 OBJ := $(SRCS:%.c=%.o)
 
