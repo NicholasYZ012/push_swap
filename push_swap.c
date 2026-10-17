@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 08:37:22 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/01 18:01:46 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/17 11:05:52 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,18 @@
 #include "libft/libft.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+static void pushswap(t_vars *bank)
+{
+	printf("sort start\n");
+	if ((bank->strat & SMP) != 0)
+		simple_sort(bank);
+	else if ((bank->strat & MED) != 0)
+		medium_sort(bank);
+	else if ((bank->strat & CPX) != 0)
+		complex_sort(bank);
+	printf("sort end\n");
+}
 
 // Currently assuming that there will be no algorithm specifier
 int	main(int argc, char **argv)
@@ -25,8 +37,8 @@ int	main(int argc, char **argv)
 	bank.ncount = argc - 1;
 	if (parser(&bank, argv))
 		ft_putstr_fd("nice\n", 1);
+	pushswap(&bank);
 	printf("disorder: %f\n", bank.disorder);
-	printf("peek A: %d\n", peek(bank.a));
 	free(bank.nums);
 	free(bank.rank);
 	free_stack(&bank.a);
