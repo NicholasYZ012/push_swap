@@ -6,19 +6,20 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 15:11:50 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/10 22:52:14 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/17 12:35:19 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
+#include <stdio.h>
 
 static void	merge(t_vars *bank)
 {
 	while (!isempty(&bank->b))
 	{
-		ops(bank, PB);
-		ops(bank, RA);
+		ops(bank, PA);
+		// ops(bank, RA);
 	}
 }
 
@@ -28,23 +29,34 @@ void	complex_sort(t_vars *bank)
 {
 	int		digcount;
 	int		ncount;
+	int		orincount;
 	t_stack	*curr;
 
 	ncount = bank->ncount;
+	orincount = bank->ncount;
 	digcount = 0;
 	while (ncount != 0)
 	{
 		while (curr != NULL && bank->ncount)
 		{
 			curr = bank->a;
-			if ((bank->a->content & (1 << digcount)) != 0)
-				ops(bank, PA);
+			// printf("cont: %i\n", bank->a->content);
+			if ((bank->a->content & (1 << digcount)) == 0)
+			{
+				ops(bank, PB);
+				// printf("IF\n");
+			}
+				// ops(bank, PA);
 			else
+			{
+				// printf("ELSE\n");
 				ops(bank, RA);
+			}
+				// ops(bank, RA);
 			bank->ncount--;
 		}
 		merge(bank);
-		bank->ncount = ncount;
+		bank->ncount = orincount;
 		ncount /= 2;
 		digcount++;
 	}

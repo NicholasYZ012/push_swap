@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 08:37:22 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/17 11:05:52 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/17 12:37:43 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static void pushswap(t_vars *bank)
 	else if ((bank->strat & MED) != 0)
 		medium_sort(bank);
 	else if ((bank->strat & CPX) != 0)
+		complex_sort(bank);
+	else
 		complex_sort(bank);
 	printf("sort end\n");
 }

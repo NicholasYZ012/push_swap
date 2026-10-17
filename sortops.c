@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 13:09:54 by nilim             #+#    #+#             */
-/*   Updated: 2026/09/27 19:51:14 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/17 11:22:28 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	p(t_stack **stacka, t_stack **stackb)
 {
 	int	temp;
 
-	if (stacka == NULL || stackb == NULL || *stackb == NULL)
+	if (stacka == NULL || stackb == NULL)
 		return (0);
 	temp = pop(stackb);
 	push(stacka, temp);
