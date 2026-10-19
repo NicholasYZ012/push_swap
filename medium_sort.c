@@ -16,58 +16,26 @@
 #define SMALL_N 3
 
 // phase 1 for one bucket (ranks lo..hi-1): pb each of them, nearest first
-// numbers from the lower half of the bucket also get rb, so inside b the
-// bucket ends up roughly ordered and its biggest numbers stay near the top
 static void	push_bucket(t_vars *bank, int lo, int hi)
 {
 	int	left;
-	int	rank;
-	int	steps;
-	int	pending;
 
 	left = hi - lo;
-	pending = 0;
 	while (left-- > 0)
 	{
-		steps = cheapest(bank->a, hi);
-		if (pending && steps > 0)
-		{
-			ops(bank, RR);
-			steps--;
-		}
-		else if (pending)
-			ops(bank, RB);
-		rotate_by(bank, steps, RA, RRA);
-		rank = bank->a->content;
+		rotate_by(bank, cheapest(bank->a, hi), RA, RRA);
 		ops(bank, PB);
-		pending = (rank < lo + (hi - lo) / 2);
 	}
-	if (pending)
-		ops(bank, RB);
 }
 
 // phase 2: biggest rank still in b goes to the top, then pa
 // a is built ascending because every pa lands on something bigger
-// if the next biggest is clearly closer, pa it first, then the biggest
-// and sa to swap them back into order
 static void	pull_back(t_vars *bank, int rank)
 {
 	while (rank >= 0)
 	{
-		if (rank > 0 && dist_b(bank, rank - 1) + 1 < dist_b(bank, rank))
-		{
-			bring_to_top_b(bank, rank - 1);
-			ops(bank, PA);
-			bring_to_top_b(bank, rank);
-			ops(bank, PA);
-			ops(bank, SA);
-			rank--;
-		}
-		else
-		{
-			bring_to_top_b(bank, rank);
-			ops(bank, PA);
-		}
+		bring_to_top_b(bank, rank);
+		ops(bank, PA);
 		rank--;
 	}
 }

@@ -69,16 +69,3 @@ void	bring_to_top_b(t_vars *bank, int rank)
 		pos -= size;
 	rotate_by(bank, pos, RB, RRB);
 }
-
-// how many rb/rrb it takes to bring rank to the top of b
-int	dist_b(t_vars *bank, int rank)
-{
-	int	size;
-	int	pos;
-
-	size = (int)stack_size(&bank->b);
-	pos = find_pos(&bank->b, rank);
-	if (pos > size - pos)
-		return (size - pos);
-	return (pos);
-}
