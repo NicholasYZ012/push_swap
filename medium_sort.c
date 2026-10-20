@@ -6,7 +6,7 @@
 /*   By: juho <juho@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 12:56:41 by juho              #+#    #+#             */
-/*   Updated: 2026/10/16 12:00:00 by juho             ###   ########.fr       */
+/*   Updated: 2026/10/21 01:34:28 by juho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	medium_sort(t_vars *bank)
 	lo = 0;
 	while (lo < n - 3)
 	{
-		hi = lo + ft_sqrt(n) * 11 / 4;
+		hi = lo + ft_sqrt(n) * 2;
 		if (hi > n - 3)
 			hi = n - 3;
 		push_bucket(bank, lo, hi);
