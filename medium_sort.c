@@ -6,7 +6,7 @@
 /*   By: juho <juho@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 12:56:41 by juho              #+#    #+#             */
-/*   Updated: 2026/10/21 01:34:28 by juho             ###   ########.fr       */
+/*   Updated: 2026/10/21 17:51:06 by juho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	push_bucket(t_vars *bank, int lo, int hi)
 	left = hi - lo;
 	while (left-- > 0)
 	{
-		rotate_by(bank, cheapest(bank->a, hi), RA, RRA);
+		rotate_by(bank, cheaJpest(bank->a, hi), RA, RRA);
 		ops(bank, PB);
 	}
 }
@@ -44,28 +44,28 @@ static void	pull_back(t_vars *bank, int rank)
 // buckets go to b smallest first, the 3 biggest ranks stay in a
 void	medium_sort(t_vars *bank)
 {
-	int	n;
+	int	size;
 	int	lo;
 	int	hi;
 
-	n = (int)stack_size(&bank->a);
+	size = (int)stack_size(&bank->a);
 	if (is_sorted(&bank->a))
 		return ;
-	if (n <= SMALL_N)
+	if (size <= SMALL_N)
 	{
 		simple_sort(bank);
 		return ;
 	}
 	lo = 0;
-	while (lo < n - 3)
+	while (lo < size - 3)
 	{
-		hi = lo + ft_sqrt(n) * 2;
-		if (hi > n - 3)
-			hi = n - 3;
+		hi = lo + ft_sqrt(size) * 2;
+		if (hi > size - 3)
+			hi = size - 3;
 		push_bucket(bank, lo, hi);
 		lo = hi;
 	}
 	if (!is_sorted(&bank->a))
 		sort_three(bank);
-	pull_back(bank, n - 4);
+	pull_back(bank, size - 4);
 }
