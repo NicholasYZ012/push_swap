@@ -3,15 +3,15 @@ NAME := push_swap
 
 # Sources and objects
 SRCS := push_swap.c stackops.c sortops.c ps_utils.c \
-		parser.c \
+		parser.c benchmark.c\
 		simple_sort.c small_sort.c ops.c \
-		complex_sort.c medium_sort.c medium_utils.c
+		complex_sort.c medium_sort.c medium_utils.c 
 
 OBJ := $(SRCS:%.c=%.o)
 
 # Compiler 
 CC := cc
-CFLAGS := -Wall -Werror -Wextra
+CFLAGS := -Wall -Werror -Wextra -g
 
 all: $(NAME)
 

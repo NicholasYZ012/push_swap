@@ -6,13 +6,12 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 15:11:50 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/17 12:42:32 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/18 09:46:41 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
-#include <stdio.h>
 
 static void	merge(t_vars *bank)
 {

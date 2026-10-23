@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   medium_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juho <juho@student.42kl.edu.my>            +#+  +:+       +#+        */
+/*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 12:56:41 by juho              #+#    #+#             */
-/*   Updated: 2026/10/21 17:51:06 by juho             ###   ########.fr       */
+/*   Updated: 2026/10/23 14:25:59 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	push_bucket(t_vars *bank, int lo, int hi)
 	left = hi - lo;
 	while (left-- > 0)
 	{
-		rotate_by(bank, cheaJpest(bank->a, hi), RA, RRA);
+		rotate_by(bank, cheapest(bank->a, hi), RA, RRA);
 		ops(bank, PB);
 	}
 }

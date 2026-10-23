@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 08:38:56 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/06 21:00:18 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/23 15:18:08 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,21 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
+typedef struct s_opctr
+{
+	int	sa;
+	int	sb;
+	int	ss;
+	int	pa;
+	int	pb;
+	int	ra;
+	int	rb;
+	int	rr;
+	int	rra;
+	int	rrb;
+	int	rrr;
+}	t_opctr;
+
 // ncount:	total amount of numbers in the list
 // nums:	array of inputted number values
 // rank:	array that stores the rank of each number according
@@ -54,6 +69,7 @@ typedef struct s_vars
 	int		*nums;
 	int		*rank;
 	float	disorder;
+	t_opctr	*opctr;
 }	t_vars;
 
 // stackops
@@ -72,7 +88,10 @@ int		rr(t_stack **stack);
 void	ops(t_vars *bank, int op);
 
 // parser
-int	parser(t_vars *bank, char **argv);
+int		parser(t_vars *bank, char **argv);
+
+// benchmark
+void	benchmark(t_vars *bank);
 
 // simple_sort
 size_t	stack_size(t_stack **stack);

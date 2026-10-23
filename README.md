@@ -32,7 +32,7 @@ stack a and b /
 11 operations / 
 Disorder metric calculation/
 
-2. Complex + adaptive alg
+2. Complex / + adaptive alg/
 
 3. Command stuff
 Error handling /
