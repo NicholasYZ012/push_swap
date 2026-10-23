@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/01 15:06:04 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/23 15:31:17 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/23 18:29:26 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static float	calc_disorder(t_stack *stack)
 // checked: amount of arguments that are checked
 static int	strat_checker(t_vars *bank, char **argv)
 {
-	if (ft_strnstr(argv[1], "--bench", 7) && bank->strat == 0)
+	if (ft_strnstr(argv[1], "--bench", 7) && bank->strat == 0 && bank->ncount--)
 	{
 		bank->strat |= BCH;
 		return (1);
@@ -94,9 +94,11 @@ static int	strat_checker(t_vars *bank, char **argv)
 			bank->strat |= SMP;
 		else if (ft_strnstr(argv[1], "--medium", 8) && argv++ && bank->ncount--)
 			bank->strat |= MED;
-		else if (ft_strnstr(argv[1], "--complex", 9) && argv++ && bank->ncount--)
+		else if (ft_strnstr(argv[1], "--complex", 9) && argv++
+			&& bank->ncount--)
 			bank->strat |= CPX;
-		else if (ft_strnstr(argv[1], "--adaptive", 10) && argv++ && bank->ncount--)
+		else if (ft_strnstr(argv[1], "--adaptive", 10) && argv++
+			&& bank->ncount--)
 			bank->strat |= ADP;
 		else
 			return (0);
@@ -110,7 +112,7 @@ static int	strat_checker(t_vars *bank, char **argv)
 // strat checker is ran twice to check for the first 2 arguments
 int	parser(t_vars *bank, char **argv)
 {
-	int ncount;
+	int	ncount;
 
 	argv += strat_checker(bank, argv);
 	argv += strat_checker(bank, argv);

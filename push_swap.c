@@ -6,16 +6,15 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 08:37:22 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/23 15:17:32 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/23 18:32:57 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
 #include <stdlib.h>
-#include <stdio.h>
 
-static void adaptive_sort(t_vars *bank)
+static void	adaptive_sort(t_vars *bank)
 {
 	if (bank->disorder < 0.2)
 		simple_sort(bank);
@@ -25,9 +24,8 @@ static void adaptive_sort(t_vars *bank)
 		complex_sort(bank);
 }
 
-static void pushswap(t_vars *bank)
+static void	pushswap(t_vars *bank)
 {
-	printf("sort start\n");
 	if ((bank->strat & SMP) != 0)
 		simple_sort(bank);
 	else if ((bank->strat & MED) != 0)
@@ -36,7 +34,6 @@ static void pushswap(t_vars *bank)
 		complex_sort(bank);
 	else
 		adaptive_sort(bank);
-	printf("sort end\n");
 }
 
 // Currently assuming that there will be no algorithm specifier
@@ -55,9 +52,9 @@ int	main(int argc, char **argv)
 	pushswap(&bank);
 	if ((bank.strat & BCH) != 0)
 		benchmark(&bank);
-	// printf("disorder: %i\n", bank.opctr->pa);
 	free(bank.nums);
 	free(bank.rank);
+	free(opcounter);
 	free_stack(&bank.a);
 	free_stack(&bank.b);
 	return (0);

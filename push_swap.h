@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 08:38:56 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/23 15:18:08 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/23 18:32:11 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@
 # define RRR 11
 
 // strategy selection
-# define ADP 1 << 0
-# define SMP 1 << 1
-# define MED 1 << 2
-# define CPX 1 << 3
-# define BCH 1 << 4
+# define ADP 0b00001
+# define SMP 0b00010
+# define MED 0b00100
+# define CPX 0b01000
+# define BCH 0b10000
 
 typedef struct s_stack
 {

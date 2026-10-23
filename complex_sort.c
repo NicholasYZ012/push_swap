@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 15:11:50 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/18 09:46:41 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/23 18:31:06 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,3 @@ void	complex_sort(t_vars *bank)
 		digcount++;
 	}
 }
-/*
-Bugs (Unsure)
-i think using ncount /= 2 until ncount = 0 to calculate the number of digits has a blind spot
-maybe in some cases, 1 digit will be skipped
-*/
