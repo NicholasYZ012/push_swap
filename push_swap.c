@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 08:37:22 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/23 18:32:57 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/23 18:37:45 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,16 @@ int	main(int argc, char **argv)
 		return (0);
 	bank.ncount = argc - 1;
 	if (parser(&bank, argv))
-		ft_putstr_fd("nice\n", 1);
-	opcounter = malloc(sizeof(t_opctr));
-	bank.opctr = opcounter;
-	pushswap(&bank);
-	if ((bank.strat & BCH) != 0)
-		benchmark(&bank);
+	{
+		opcounter = malloc(sizeof(t_opctr));
+		bank.opctr = opcounter;
+		pushswap(&bank);
+		if ((bank.strat & BCH) != 0)
+			benchmark(&bank);
+		free(opcounter);
+	}
 	free(bank.nums);
 	free(bank.rank);
-	free(opcounter);
 	free_stack(&bank.a);
 	free_stack(&bank.b);
 	return (0);
