@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: juho <juho@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 08:37:22 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/23 18:37:45 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/25 09:46:00 by juho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,15 @@ int	main(int argc, char **argv)
 	bank.ncount = argc - 1;
 	if (parser(&bank, argv))
 	{
-		opcounter = malloc(sizeof(t_opctr));
-		bank.opctr = opcounter;
-		pushswap(&bank);
-		if ((bank.strat & BCH) != 0)
-			benchmark(&bank);
-		free(opcounter);
+		opcounter = ft_calloc(1, sizeof(t_opctr));
+		if (opcounter != NULL)
+		{
+			bank.opctr = opcounter;
+			pushswap(&bank);
+			if ((bank.strat & BCH) != 0)
+				benchmark(&bank);
+			free(opcounter);
+		}
 	}
 	free(bank.nums);
 	free(bank.rank);

@@ -1,11 +1,12 @@
 # cc -L libft -I. ft_printf.c -lft
 NAME := push_swap
+LIBFT := libft/libft.a
 
 # Sources and objects
 SRCS := push_swap.c stackops.c sortops.c ps_utils.c \
-		parser.c benchmark.c\
+		parser.c benchmark.c \
 		simple_sort.c small_sort.c ops.c \
-		complex_sort.c medium_sort.c medium_utils.c 
+		complex_sort.c medium_sort.c medium_utils.c
 
 OBJ := $(SRCS:%.c=%.o)
 
@@ -15,22 +16,24 @@ CFLAGS := -Wall -Werror -Wextra -g
 
 all: $(NAME)
 
-$(NAME): libft $(OBJ) 
+$(NAME): $(LIBFT) $(OBJ)
 	$(CC) -I. -L libft/ $(OBJ) -lft -o $@
 
-%.o: %.c
-	$(CC) -c $(CFLAGS) $^ $(LIBS) -o $@
+%.o: %.c push_swap.h
+	$(CC) $(CFLAGS) -I. -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
+	$(MAKE) -C ./libft/ clean
 
 fclean: clean
-	rm $(NAME)
+	rm -f $(NAME)
+	$(MAKE) -C ./libft/ fclean
 
 re: fclean all
 
-libft:
-	$(MAKE) libonly -C ./libft/
+$(LIBFT):
+	$(MAKE) -C ./libft/
 
-.PHONY: $(NAME) all clean fclean re libft
+.PHONY: all clean fclean re
 .SILENT:

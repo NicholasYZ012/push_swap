@@ -5,3 +5,8 @@
 
 # Executable
 push_swap
+
+# Checkers
+checker_Mac
+checker_linux
+*_checker
