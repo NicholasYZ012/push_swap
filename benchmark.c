@@ -69,6 +69,8 @@ void	benchmark(t_vars *bank)
 	ft_putstr_fd("[bench] disorder: ", 2);
 	ft_putnbr_fd((int)(bank->disorder * 100), 2);
 	ft_putstr_fd(".", 2);
+	if ((int)(bank->disorder * 10000) % 100 < 10)
+		ft_putstr_fd("0", 2);
 	ft_putnbr_fd(((int)(bank->disorder * 10000) % 100), 2);
 	ft_putstr_fd("%\n", 2);
 	ft_putstr_fd("[bench] strategy: ", 2);
