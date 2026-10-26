@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/01 15:06:04 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/23 18:29:26 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/26 09:54:12 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,11 @@ static float	calc_disorder(t_stack *stack)
 	{
 		right = left->next;
 		pairs++;
-		while (right->next != NULL)
+		while (right != NULL && ++pairs)
 		{
 			if (left->content > right->content)
 				mistakes++;
 			right = right->next;
-			pairs++;
 		}
 		left = left->next;
 	}
