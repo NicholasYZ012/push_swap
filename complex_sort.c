@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   complex_sort.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: juho <juho@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 15:11:50 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/27 21:53:48 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/27 22:11:01 by juho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,16 @@ static void	merge(t_vars *bank)
 		ops(bank, PA);
 }
 
-static void	linesaver(t_vars *bank, int digcount, int max)
+static void	linesaver(t_vars *bank)
 {
 	int		ncountcpy;
+	int		digcount;
+	int		max;
 	t_stack	*curr;
 
+	max = bank->ncount;
+	curr = bank->a;
+	digcount = 0;
 	while (max != 0)
 	{
 		ncountcpy = bank->ncount;
@@ -46,8 +51,6 @@ static void	linesaver(t_vars *bank, int digcount, int max)
 // ncount: total number of entries
 void	complex_sort(t_vars *bank)
 {
-	int	digcount;
-	int	max;
 	int	size;
 
 	if (bank == NULL || is_sorted(&bank->a))
@@ -58,7 +61,5 @@ void	complex_sort(t_vars *bank)
 		simple_sort(bank);
 		return ;
 	}
-	max = bank->ncount;
-	digcount = 0;
-	linesaver(bank, digcount, max);
+	linesaver(bank);
 }
