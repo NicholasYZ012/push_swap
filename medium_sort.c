@@ -6,14 +6,11 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 12:56:41 by juho              #+#    #+#             */
-/*   Updated: 2026/10/23 14:25:59 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/27 21:34:43 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// up to this many numbers simple_sort is used (sort_three, 2 moves max)
-#define SMALL_N 3
 
 // phase 1 for one bucket (ranks lo..hi-1): pb each of them, nearest first
 static void	push_bucket(t_vars *bank, int lo, int hi)

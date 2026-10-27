@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/19 08:38:56 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/23 18:32:11 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/27 21:34:57 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 # define MED 0b00100
 # define CPX 0b01000
 # define BCH 0b10000
+
+#define SMALL_N 3
 
 typedef struct s_stack
 {
