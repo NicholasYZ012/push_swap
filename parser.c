@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: juho <juho@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/01 15:06:04 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/27 11:47:42 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/27 12:25:26 by juho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ static float	calc_disorder(t_stack *stack)
 	while (left != NULL && left->next != NULL)
 	{
 		right = left->next;
-		pairs++;
 		while (right != NULL && ++pairs)
 		{
 			if (left->content > right->content)
@@ -75,39 +74,40 @@ static float	calc_disorder(t_stack *stack)
 		}
 		left = left->next;
 	}
-	if (pairs <= 1)
+	if (pairs == 0)
 		return (0.0);
 	return (mistakes / pairs);
 }
 
 // Function: check for options inputted by user
-// checked: amount of arguments that are checked
+// returns 1 if argv[1] is a flag (and records it), 0 otherwise
+// --bench and one strategy flag can each appear once, in any order
+// the length includes the '\0' so "--benchXYZ" does not match "--bench"
 static int	strat_checker(t_vars *bank, char **argv)
 {
+	int	flag;
+
 	if (argv[1] == NULL)
 		return (0);
-	if (ft_strnstr(argv[1], "--bench", 7) && bank->strat == 0 && bank->ncount--)
+	flag = 0;
+	if (!ft_strncmp(argv[1], "--bench", 8) && !(bank->strat & BCH))
+		flag = BCH;
+	else if ((bank->strat & ~BCH) == 0)
 	{
-		bank->strat |= BCH;
-		return (1);
+		if (!ft_strncmp(argv[1], "--simple", 9))
+			flag = SMP;
+		else if (!ft_strncmp(argv[1], "--medium", 9))
+			flag = MED;
+		else if (!ft_strncmp(argv[1], "--complex", 10))
+			flag = CPX;
+		else if (!ft_strncmp(argv[1], "--adaptive", 11))
+			flag = ADP;
 	}
-	else if (bank->strat == 0 || bank->strat == BCH)
-	{
-		if (ft_strnstr(argv[1], "--simple", 8) && argv++ && bank->ncount--)
-			bank->strat |= SMP;
-		else if (ft_strnstr(argv[1], "--medium", 8) && argv++ && bank->ncount--)
-			bank->strat |= MED;
-		else if (ft_strnstr(argv[1], "--complex", 9) && argv++
-			&& bank->ncount--)
-			bank->strat |= CPX;
-		else if (ft_strnstr(argv[1], "--adaptive", 10) && argv++
-			&& bank->ncount--)
-			bank->strat |= ADP;
-		else
-			return (0);
-		return (1);
-	}
-	return (0);
+	if (flag == 0)
+		return (0);
+	bank->strat |= flag;
+	bank->ncount--;
+	return (1);
 }
 
 // argv: user input
