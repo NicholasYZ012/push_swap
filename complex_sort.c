@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 15:11:50 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/26 10:14:01 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/27 11:44:16 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	complex_sort(t_vars *bank)
 		return ;
 	max = bank->ncount;
 	digcount = 0;
-	while (max != 0 && ++digcount)
+	while (max != 0)
 	{
 		ncountcpy = bank->ncount;
 		while (curr != NULL && ncountcpy)
@@ -47,6 +47,7 @@ void	complex_sort(t_vars *bank)
 			ncountcpy--;
 		}
 		merge(bank);
+		digcount++;
 		max /= 2;
 	}
 }

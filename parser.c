@@ -6,7 +6,7 @@
 /*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/01 15:06:04 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/26 09:54:12 by nilim            ###   ########.fr       */
+/*   Updated: 2026/10/27 11:47:42 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ static float	calc_disorder(t_stack *stack)
 		}
 		left = left->next;
 	}
+	if (pairs <= 1)
+		return (0.0);
 	return (mistakes / pairs);
 }
 
@@ -82,6 +84,8 @@ static float	calc_disorder(t_stack *stack)
 // checked: amount of arguments that are checked
 static int	strat_checker(t_vars *bank, char **argv)
 {
+	if (argv[1] == NULL)
+		return (0);
 	if (ft_strnstr(argv[1], "--bench", 7) && bank->strat == 0 && bank->ncount--)
 	{
 		bank->strat |= BCH;
