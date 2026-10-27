@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   complex_sort.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juho <juho@student.42kl.edu.my>            +#+  +:+       +#+        */
+/*   By: nilim <nilim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/04 15:11:50 by nilim             #+#    #+#             */
-/*   Updated: 2026/10/27 22:11:01 by juho             ###   ########.fr       */
+/*   Updated: 2026/10/27 22:47:56 by nilim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	merge(t_vars *bank)
 		ops(bank, PA);
 }
 
-static void	linesaver(t_vars *bank)
+static void	core(t_vars *bank)
 {
 	int		ncountcpy;
 	int		digcount;
@@ -61,5 +61,5 @@ void	complex_sort(t_vars *bank)
 		simple_sort(bank);
 		return ;
 	}
-	linesaver(bank);
+	core(bank);
 }
