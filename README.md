@@ -186,6 +186,7 @@ bit length of `n` (7 for 100 numbers, 9 for 500).
 - **Space:** O(1) extra besides the stacks.
 - **Note:** the operation count does not depend on the order of the input, only
   on `n` (always 1084 for n = 100, 6784 for n = 500 in our runs).
+- **Why radix sort (nilim):** I think Radix sort has a really counterintuitive concept that on first glance, doesn't seem like it'll work. Even now, when looking at the algorithm's operations on the visualizer, it feels as if the stack gets sorted due to random chance. Another reason of choosing it is that despite being so special, it is very effective and efficient, whether in the time taken or the resources used.
 
 ### 4. Adaptive – chooses by disorder
 
